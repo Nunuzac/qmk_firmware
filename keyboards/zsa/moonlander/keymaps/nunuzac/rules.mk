@@ -1,7 +1,8 @@
-TAP_DANCE_ENABLE   = yes
-AUTO_SHIFT_ENABLE  = yes
-LEADER_ENABLE      = yes
-AUDIO_ENABLE       = yes
-COMMAND_ENABLE     = no
-COMBO_ENABLE       = yes
-SEND_STRING_ENABLE = yes
+TAP_DANCE_ENABLE     = yes
+AUTO_SHIFT_ENABLE    = yes
+LEADER_ENABLE        = yes
+DYNAMIC_MACRO_ENABLE = yes
+AUDIO_ENABLE         = no
+COMMAND_ENABLE       = no
+COMBO_ENABLE         = yes
+SEND_STRING_ENABLE   = yes

@@ -36,8 +36,6 @@ enum combo_events {
 enum custom_keycodes {
     KC_PRIM = SAFE_RANGE,
     KC_SECN,
-    KC_UNDX,
-    KC_REDX,
     SW_OS,
     SW_PG,
     SW_LY,
@@ -67,8 +65,8 @@ combo_t key_combos[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
         KC_TDEC, KC_TD1N,  KC_TD2N,  KC_TD3N,  KC_TD4N,  KC_TD5N, SW_OS,              SW_GM,   KC_TD6N,  KC_TD7N,  KC_TD8N,  KC_TD9N,  KC_TD0N,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_W,     KC_TDE,   KC_R,     KC_T,    SW_PG,              SW_SY,   KC_Y,     KC_TDU,   KC_TDI,   KC_TDO,   KC_P,     KC_TDSL,
-        KC_TDDE, KC_TDA,   KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              _______, KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
+        KC_TDUH, KC_Q,     KC_W,     KC_TDE,   KC_R,     KC_T,    SW_PG,              _______, KC_Y,     KC_TDU,   KC_TDI,   KC_TDO,   KC_P,     KC_TDSL,
+        KC_TDDE, KC_TDA,   KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              SW_SY,   KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
         KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_TDN,   KC_M,     KC_TDCL,  KC_TDDG,  KC_TDCN,  KC_TDLN,
         KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,           KC_TAB,             KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
                                                KC_SPC,   KC_TDCC, KC_TDPS,            QK_LEAD, KC_DEL,   KC_BSPC
@@ -76,26 +74,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_moonlander(
         KC_TDEC, KC_TD1N,  KC_TD2N,  KC_TD3N,  KC_TD4N,  KC_TD5N,  SW_OS,             SW_GM,   KC_TD6N,  KC_TD7N,  KC_TD8N,  KC_TD9N,  KC_TD0N,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             SW_SY,   KC_J,     KC_F,     KC_TDU,   KC_P,     KC_TDCN,  KC_TDSL,
-        KC_TDDE, KC_TDA,   KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             _______, KC_Y,     KC_TDN,   KC_TDE,   KC_TDO,   KC_TDI,   KC_TDQT,
+        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             _______, KC_J,     KC_F,     KC_TDU,   KC_P,     KC_TDCN,  KC_TDSL,
+        KC_TDDE, KC_TDA,   KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             SW_SY,   KC_Y,     KC_TDN,   KC_TDE,   KC_TDO,   KC_TDI,   KC_TDQT,
         KC_LSFT, KC_Z,     KC_X,     KC_M,     KC_C,     KC_V,                                 KC_K,     KC_L,     KC_TDCL,  KC_TDDG,  KC_TDEP,  KC_TDLN,
         KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
                                                KC_SPC,   KC_TDCC,  KC_TDPS,           QK_LEAD, KC_DEL,  KC_BSPC
     ),
 
     [QWERTY_PG] = LAYOUT_moonlander(
-        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5, SW_OS,              KC_UNDX, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    SW_PG,              KC_REDX, KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_TDSL,
-        KC_TDDE, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              QK_LEAD, KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
+        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5, SW_OS,              QK_LEAD, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
+        KC_TDUH, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    SW_PG,              DM_PLY1, KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_TDSL,
+        KC_TDDE, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              SW_SY,   KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
         KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_N,     KC_M,     KC_TDCL,  KC_TDDG,  KC_TDCN,  KC_TDLN,
         KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,           KC_TAB,             KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
                                                KC_SPC,   KC_TDCC, KC_TDPS,            KC_TDFR, KC_DEL,   KC_BSPC
     ),
 
     [WORKMAN_PG] = LAYOUT_moonlander(
-        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5,  SW_OS,             KC_UNDX, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             KC_REDX, KC_J,     KC_F,     KC_U,     KC_P,     KC_TDCN,  KC_TDSL,
-        KC_TDDE, KC_A,     KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             QK_LEAD, KC_Y,     KC_N,     KC_E,     KC_O,     KC_I,     KC_TDQT,
+        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5,  SW_OS,             QK_LEAD, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
+        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             DM_PLY1, KC_J,     KC_F,     KC_U,     KC_P,     KC_TDCN,  KC_TDSL,
+        KC_TDDE, KC_A,     KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             SW_SY  , KC_Y,     KC_N,     KC_E,     KC_O,     KC_I,     KC_TDQT,
         KC_LSFT, KC_Z,     KC_X,     KC_M,     KC_C,     KC_V,                                 KC_K,     KC_L,     KC_TDCL,  KC_TDDG,  KC_TDEP,  KC_TDLN,
         KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
                                                KC_SPC,   KC_TDCC,  KC_TDPS,           KC_TDFR, KC_DEL,  KC_BSPC
@@ -103,19 +101,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [GAMES] = LAYOUT_moonlander(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,                SW_GM,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-        KC_LALT, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
-        KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,                _______, KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
-        KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
-        _______, _______, _______, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,                SW_SY,   KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
+        KC_LCTL, _______, KC_LALT, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
                                             KC_SPC,  _______, _______,                _______, KC_DEL,  KC_BSPC
     ),
 
     [SYMBOLS] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,                SW_GM,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-        KC_LALT, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
-        KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,                _______, KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
-        KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
-        _______, _______, _______, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   DM_REC1,                SW_GM,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    DM_REC2,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    DM_RSTP,                SW_SY,   KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
+        KC_LCTL, _______, KC_LALT, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
                                             KC_SPC,  _______, _______,                _______, KC_DEL,  KC_BSPC
     ),
 };
@@ -164,22 +162,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_caps_word(keycode, record)) { return false; }
     switch (keycode) {
-        case KC_UNDX:
-        case KC_REDX:
-            ;
-            enum mods_5bit to_press = get_current_os() == OSX ? MOD_LGUI : MOD_LCTL;
-            if(record->event.pressed) {
-                register_mods(to_press);
-                if(keycode == KC_REDX)
-                    register_mods(MOD_LSFT);
-                register_code(KC_Z);
-            } else {
-                unregister_mods(to_press);
-                if(keycode == KC_REDX)
-                    unregister_mods(MOD_LSFT);
-                unregister_code(KC_Z);
-            }
-        break;
         case KC_PRIM:
         case KC_SECN:
             ;
@@ -233,6 +215,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     layer_on(GAMES);
             }
         break;
+        case SW_SY:
+            if(!record->event.pressed) {
+                if(layer_state_is(SYMBOLS))
+                    layer_off(SYMBOLS);
+                else
+                    layer_on(SYMBOLS);
+            }
+        break;
     }
     if(keycode >= SW_OS)
         set_autoshift();
@@ -240,9 +230,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void leader_end_user(void) {
-    if(leader_sequence_one_key(KC_PRIM)) {
+    if(leader_sequence_one_key(KC_C)) {
         SEND_STRING("clear");
         tap_code(KC_ENT);
+    } else if(leader_sequence_one_key(KC_E)) {
+        SEND_STRING("exit");
+        tap_code(KC_ENT);
+    } else if(leader_sequence_one_key(KC_G)) {
+        SEND_STRING(" | grep ");
     } else if(leader_sequence_one_key(KC_TAB)){
         SEND_STRING(SS_LCTL(SS_LSFT("t")));
     } else if(leader_sequence_two_keys(KC_TAB, KC_TAB)){

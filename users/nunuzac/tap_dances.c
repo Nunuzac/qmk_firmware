@@ -19,7 +19,6 @@
         .user_data = (void *)&((shortcut_pair_t){sc1, sc2}), \
     }
 
-
 typedef struct shortcut_pair {
     shortcut_t sc1;
     shortcut_t sc2;
@@ -29,22 +28,22 @@ void tilde_dance_end(tap_dance_state_t *state, void *user_data) {
     tap_dance_pair_t *pair = (tap_dance_pair_t *)user_data;
     switch (state->count) {
         case 1:
-            if(state->pressed)
+            if (state->pressed)
                 tap_code16(S(pair->kc1));
             else
                 tap_code16(pair->kc1);
-        break;
+            break;
         case 2:
-            if(state->pressed) {
+            if (state->pressed) {
                 tap_code16(pair->kc2);
                 tap_code16(pair->kc1);
             } else {
                 tap_code16(pair->kc1);
                 tap_code16(pair->kc1);
             }
-        break;
+            break;
         case 3:
-            if(state->pressed) {
+            if (state->pressed) {
                 tap_code16(pair->kc2);
                 tap_code16(S(pair->kc1));
             } else {
@@ -52,24 +51,24 @@ void tilde_dance_end(tap_dance_state_t *state, void *user_data) {
                 tap_code16(pair->kc1);
                 tap_code16(pair->kc1);
             }
-        break;
+            break;
         default:
-            for(int i = 0; i < state->count; i++)
+            for (int i = 0; i < state->count; i++)
                 tap_code16(pair->kc1);
-        break;
+            break;
     }
 }
 
 void tap_and_hold_dance_end(tap_dance_state_t *state, void *user_data) {
-    tap_dance_pair_t *pair = (tap_dance_pair_t *)user_data;
-    uint16_t to_press = state->pressed ? pair->kc2 : pair->kc1;
-    for(int i = 0; i < state->count; i++)
+    tap_dance_pair_t *pair     = (tap_dance_pair_t *)user_data;
+    uint16_t          to_press = state->pressed ? pair->kc2 : pair->kc1;
+    for (int i = 0; i < state->count; i++)
         tap_code16(to_press);
 }
 
 void shortcut_dance_end(tap_dance_state_t *state, void *user_data) {
     shortcut_pair_t *scs = (shortcut_pair_t *)user_data;
-    shortcut_t sc = state->pressed ? scs->sc2 : scs->sc1;
+    shortcut_t       sc  = state->pressed ? scs->sc2 : scs->sc1;
     tap_code16(get_os_shortcut(sc));
 }
 
@@ -118,4 +117,3 @@ tap_dance_action_t tap_dance_actions[] = {
     [X_PST_SV]    = ACTION_SHORTCUT_DANCE(PASTE, SAVE),
     [X_FIND_REPL] = ACTION_SHORTCUT_DANCE(FIND, REPLACE),
 };
-
