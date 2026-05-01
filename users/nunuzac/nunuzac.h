@@ -2,16 +2,15 @@
 #include QMK_KEYBOARD_H
 
 typedef enum {
-    WLX,
+    WIN,
+    LNX,
     OSX
 } os_type;
 
 enum layers {
     QWERTY,
-    QWERTY_PG,
     WORKMAN,
-    WORKMAN_PG,
-    SYMBOLS,
+    FUNCTION,
     GAMES
 };
 

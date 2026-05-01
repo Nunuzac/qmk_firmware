@@ -34,14 +34,12 @@ enum combo_events {
 };
 
 enum custom_keycodes {
-    KC_PRIM = SAFE_RANGE,
-    KC_SECN,
-    SW_OS,
-    SW_PG,
-    SW_LY,
-    SW_GM,
-    SW_SY,
+    TG_AS = SAFE_RANGE,
+    TG_LY,
+    CL_GM
 };
+
+#define TG_FN TG(FUNCTION)
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 const uint16_t PROGMEM caps_combo[] = {KC_RGHT, KC_UP, COMBO_END};
@@ -64,67 +62,41 @@ combo_t key_combos[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
-        KC_TDEC, KC_TD1N,  KC_TD2N,  KC_TD3N,  KC_TD4N,  KC_TD5N, SW_OS,              SW_GM,   KC_TD6N,  KC_TD7N,  KC_TD8N,  KC_TD9N,  KC_TD0N,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_W,     KC_TDE,   KC_R,     KC_T,    SW_PG,              _______, KC_Y,     KC_TDU,   KC_TDI,   KC_TDO,   KC_P,     KC_TDSL,
-        KC_TDDE, KC_TDA,   KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              SW_SY,   KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_TDN,   KC_M,     KC_TDCL,  KC_TDDG,  KC_TDCN,  KC_TDLN,
-        KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,           KC_TAB,             KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
+        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5, TG_FN,              DM_PLY1, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
+        KC_TDUH, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    TG_AS,              DM_PLY2, KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_TDSL,
+        KC_TDDE, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    TG_LY,              CL_GM,   KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_N,     KC_M,     KC_TDCL,  KC_TDDG,  KC_TDCN,  KC_TDLN,
+        KC_LCTL, KC_LGUI,  KC_LALT,  KC_LEFT,  KC_RGHT,           KC_TAB,             KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
                                                KC_SPC,   KC_TDCC, KC_TDPS,            QK_LEAD, KC_DEL,   KC_BSPC
     ),
 
     [WORKMAN] = LAYOUT_moonlander(
-        KC_TDEC, KC_TD1N,  KC_TD2N,  KC_TD3N,  KC_TD4N,  KC_TD5N,  SW_OS,             SW_GM,   KC_TD6N,  KC_TD7N,  KC_TD8N,  KC_TD9N,  KC_TD0N,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             _______, KC_J,     KC_F,     KC_TDU,   KC_P,     KC_TDCN,  KC_TDSL,
-        KC_TDDE, KC_TDA,   KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             SW_SY,   KC_Y,     KC_TDN,   KC_TDE,   KC_TDO,   KC_TDI,   KC_TDQT,
+        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5,  TG_FN,             DM_PLY1, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
+        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     TG_AS,             DM_PLY2, KC_J,     KC_F,     KC_U,     KC_P,     KC_TDCN,  KC_TDSL,
+        KC_TDDE, KC_A,     KC_S,     KC_H,     KC_T,     KC_G,     TG_LY,             CL_GM,   KC_Y,     KC_N,     KC_E,     KC_O,     KC_I,     KC_TDQT,
         KC_LSFT, KC_Z,     KC_X,     KC_M,     KC_C,     KC_V,                                 KC_K,     KC_L,     KC_TDCL,  KC_TDDG,  KC_TDEP,  KC_TDLN,
-        KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
-                                               KC_SPC,   KC_TDCC,  KC_TDPS,           QK_LEAD, KC_DEL,  KC_BSPC
-    ),
-
-    [QWERTY_PG] = LAYOUT_moonlander(
-        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5, SW_OS,              QK_LEAD, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    SW_PG,              DM_PLY1, KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_TDSL,
-        KC_TDDE, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    SW_LY,              SW_SY,   KC_H,     KC_J,     KC_K,     KC_L,     KC_TDEP,  KC_TDQT,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_N,     KC_M,     KC_TDCL,  KC_TDDG,  KC_TDCN,  KC_TDLN,
-        KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,           KC_TAB,             KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
-                                               KC_SPC,   KC_TDCC, KC_TDPS,            KC_TDFR, KC_DEL,   KC_BSPC
-    ),
-
-    [WORKMAN_PG] = LAYOUT_moonlander(
-        KC_TDEC, KC_TDN1,  KC_TDN2,  KC_TDN3,  KC_TDN4,  KC_TDN5,  SW_OS,             QK_LEAD, KC_TDN6,  KC_TDN7,  KC_TDN8,  KC_TDN9,  KC_TDN0,  KC_TDLG,
-        KC_TDUH, KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     SW_PG,             DM_PLY1, KC_J,     KC_F,     KC_U,     KC_P,     KC_TDCN,  KC_TDSL,
-        KC_TDDE, KC_A,     KC_S,     KC_H,     KC_T,     KC_G,     SW_LY,             SW_SY  , KC_Y,     KC_N,     KC_E,     KC_O,     KC_I,     KC_TDQT,
-        KC_LSFT, KC_Z,     KC_X,     KC_M,     KC_C,     KC_V,                                 KC_K,     KC_L,     KC_TDCL,  KC_TDDG,  KC_TDEP,  KC_TDLN,
-        KC_PRIM, KC_SECN,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
-                                               KC_SPC,   KC_TDCC,  KC_TDPS,           KC_TDFR, KC_DEL,  KC_BSPC
+        KC_LCTL, KC_LGUI,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  KC_TDCB,  KC_TDRB,  KC_TDSB,
+                                               KC_SPC,   KC_TDCC,  KC_TDPS,           QK_LEAD, KC_DEL,   KC_BSPC
     ),
 
     [GAMES] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,                SW_GM,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
-        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,                SW_SY,   KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
-        KC_LCTL, _______, KC_LALT, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
-                                            KC_SPC,  _______, _______,                _______, KC_DEL,  KC_BSPC
+        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     TG_FN,             _______, KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     _______,
+        _______, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     TG_AS,             _______, KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     _______,
+        _______, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     TG_LY,             CL_GM,   KC_H,     KC_J,     KC_K,     KC_L,     _______,  _______,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                 KC_N,     KC_M,     _______,  _______,  _______,  _______,
+        KC_LCTL, _______,  KC_LALT,  KC_LEFT,  KC_RGHT,            KC_TAB,            KC_ENT,            KC_UP,    KC_DOWN,  _______,  _______,  _______,
+                                               KC_SPC,   _______,  _______,           _______, KC_DEL,   KC_BSPC
     ),
 
-    [SYMBOLS] = LAYOUT_moonlander(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   DM_REC1,                SW_GM,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    DM_REC2,                _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
-        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    DM_RSTP,                SW_SY,   KC_H,    KC_J,    KC_K,    KC_L,    _______, _______,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                     KC_N,    KC_M,    _______, _______, _______, _______,
-        KC_LCTL, _______, KC_LALT, KC_LEFT, KC_RGHT,          KC_TAB,                 KC_ENT,           KC_UP,   KC_DOWN, _______, _______, _______,
-                                            KC_SPC,  _______, _______,                _______, KC_DEL,  KC_BSPC
+    [FUNCTION] = LAYOUT_moonlander(
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   TG_FN,                  DM_REC1, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        _______, _______, _______, _______, _______, _______, _______,                DM_REC2, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,                DM_RSTP, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                                  _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,          _______,                _______,          _______, _______, _______, _______, _______,
+                                            _______, _______, _______,                _______,  _______, _______
     ),
 };
-
-void set_autoshift(void) {
-    clear_keyboard();
-    if (layer_state_is(QWERTY) || layer_state_is(WORKMAN))
-        autoshift_enable();
-    else
-        autoshift_disable();
-}
 
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -134,27 +106,27 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 caps_word_set(true);
         break;
         case LPWD_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_long_password();
         break;
         case SPWD_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_short_password();
         break;
         case MAIL_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_mail();
         break;
         case WMAL_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_work_mail();
         break;
         case LNAM_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_long_name();
         break;
         case SNAM_COMBO:
-            if(!pressed)
+            if (!pressed)
                 send_short_name();
     }
 }
@@ -162,114 +134,56 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_caps_word(keycode, record)) { return false; }
     switch (keycode) {
-        case KC_PRIM:
-        case KC_SECN:
-            ;
-            enum mods_5bit to_hold = MOD_LCTL;
-            if ((keycode == KC_PRIM && get_current_os() == OSX) || (keycode == KC_SECN && get_current_os() != OSX))
-                to_hold = MOD_LGUI;
-            if(record->event.pressed)
-                register_mods(to_hold);
-            else
-                unregister_mods(to_hold);
-        break;
-        case SW_OS:
-            if(!record->event.pressed) {
-                set_current_os((get_current_os() + 1) % 2);
-                ML_LED_1(get_current_os() == OSX);
+        case TG_AS:
+            if (!record->event.pressed) {
+                autoshift_toggle();
+                ML_LED_2(get_autoshift_state());
             }
         break;
-        case SW_PG:
-            if(!record->event.pressed) {
-                if(layer_state_is(QWERTY))
-                    layer_move(QWERTY_PG);
-                else if(layer_state_is(QWERTY_PG))
-                    layer_move(QWERTY);
-                else if(layer_state_is(WORKMAN))
-                    layer_move(WORKMAN_PG);
-                else if(layer_state_is(WORKMAN_PG))
-                    layer_move(WORKMAN);
-                else
-                    layer_move(QWERTY);
+        case TG_LY:
+            if (!record->event.pressed) {
+                if (layer_state_is(WORKMAN)) {
+                    layer_off(WORKMAN);
+                    layer_on(QWERTY);
+                } else if (layer_state_is(QWERTY)) {
+                    layer_off(QWERTY);
+                    layer_on(WORKMAN);
+                }
             }
         break;
-        case SW_LY:
-            if(!record->event.pressed) {
-                if(layer_state_is(QWERTY))
-                    layer_move(WORKMAN);
-                else if(layer_state_is(QWERTY_PG))
-                    layer_move(WORKMAN_PG);
-                else if(layer_state_is(WORKMAN))
-                    layer_move(QWERTY);
-                else if(layer_state_is(WORKMAN_PG))
-                    layer_move(QWERTY_PG);
-                else
-                    layer_move(QWERTY);
-            }
-        break;
-        case SW_GM:
-            if(!record->event.pressed) {
-                if(layer_state_is(GAMES))
+        case CL_GM:
+            if (!record->event.pressed) {
+                if (layer_state_is(GAMES)) {
                     layer_off(GAMES);
-                else
-                    layer_on(GAMES);
-            }
-        break;
-        case SW_SY:
-            if(!record->event.pressed) {
-                if(layer_state_is(SYMBOLS))
-                    layer_off(SYMBOLS);
-                else
-                    layer_on(SYMBOLS);
+                } else {
+                    layer_move(GAMES);
+                }
             }
         break;
     }
-    if(keycode >= SW_OS)
-        set_autoshift();
     return true;
 }
 
 void leader_end_user(void) {
-    if(leader_sequence_one_key(KC_C)) {
+    if (leader_sequence_one_key(KC_C)) {
         SEND_STRING("clear");
         tap_code(KC_ENT);
-    } else if(leader_sequence_one_key(KC_E)) {
+    } else if (leader_sequence_one_key(KC_E)) {
         SEND_STRING("exit");
         tap_code(KC_ENT);
-    } else if(leader_sequence_one_key(KC_G)) {
+    } else if (leader_sequence_one_key(KC_G)) {
         SEND_STRING(" | grep ");
-    } else if(leader_sequence_one_key(KC_TAB)){
+    } else if (leader_sequence_one_key(KC_TAB)){
         SEND_STRING(SS_LCTL(SS_LSFT("t")));
-    } else if(leader_sequence_two_keys(KC_TAB, KC_TAB)){
+    } else if (leader_sequence_two_keys(KC_TAB, KC_TAB)){
         SEND_STRING(SS_LCTL("t"));
     }
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    bool LED_2 = false;
-    bool LED_3 = false;
-    bool LED_4 = false;
-    bool LED_5 = false;
-    bool LED_6 = false;
-    uint8_t layer = get_highest_layer(state);
-    if(layer == WORKMAN_PG || layer == QWERTY_PG)
-        LED_2 = true;
-    if(layer == WORKMAN || layer == WORKMAN_PG)
-        LED_3 = true;
-    switch(layer) {
-        case GAMES:
-            LED_4 = true;
-        break;
-        case SYMBOLS:
-            LED_5 = true;
-        break;
-        default:
-        break;
-    }
-    ML_LED_2(LED_2);
-    ML_LED_3(LED_3);
-    ML_LED_4(LED_4);
-    ML_LED_5(LED_5);
-    ML_LED_6(LED_6);
+    ML_LED_1(layer_state_cmp(state, FUNCTION));
+    ML_LED_2(get_autoshift_state());
+    ML_LED_3(layer_state_cmp(state, WORKMAN));
+    ML_LED_6(layer_state_cmp(state, GAMES));
     return state;
 }
