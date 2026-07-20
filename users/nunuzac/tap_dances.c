@@ -1,5 +1,8 @@
 #include "tap_dances.h"
 #include "nunuzac.h"
+#ifdef USE_OS_SHORTCUTS
+#include "os.h"
+#endif
 
 #define ACTION_TAP_AND_HOLD_DANCE(kc1, kc2)                   \
     {                                                         \
@@ -69,7 +72,11 @@ void tap_and_hold_dance_end(tap_dance_state_t *state, void *user_data) {
 void shortcut_dance_end(tap_dance_state_t *state, void *user_data) {
     shortcut_pair_t *scs = (shortcut_pair_t *)user_data;
     shortcut_t       sc  = state->pressed ? scs->sc2 : scs->sc1;
+#ifdef USE_OS_SHORTCUTS
     tap_code16(get_os_shortcut(sc));
+#else
+    tap_code16(sc);
+#endif
 }
 
 tap_dance_action_t tap_dance_actions[] = {

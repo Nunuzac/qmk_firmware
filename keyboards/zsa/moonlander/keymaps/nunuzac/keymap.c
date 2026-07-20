@@ -16,11 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+#define TG_FN TG(FUNCTION)
+#define USE_OS_SHORTCUTS
+
 #include <stdint.h>
 #include "nunuzac.h"
 #include "tap_dances.h"
-#include "caps_word.h"
 #include "secrets.h"
+#include "os.h"
 
 enum combo_events {
     CAPS_COMBO,
@@ -39,7 +43,23 @@ enum custom_keycodes {
     CL_GM
 };
 
-#define TG_FN TG(FUNCTION)
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+    case KC_A ... KC_Z:
+    case KC_MINS:
+      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+      return true;
+    case KC_1 ... KC_0:
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_UNDS:
+    case KC_LEFT:
+    case KC_TDLN:
+      return true;
+    default:
+      return false;
+  }
+}
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 const uint16_t PROGMEM caps_combo[] = {KC_RGHT, KC_UP, COMBO_END};
@@ -102,8 +122,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
         case CAPS_COMBO:
-            if (pressed)
-                caps_word_set(true);
+            if (!pressed) {
+                if (is_caps_word_on())
+                    caps_word_off();
+                else
+                    caps_word_on();
+            }
         break;
         case LPWD_COMBO:
             if (!pressed)

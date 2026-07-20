@@ -1,4 +1,6 @@
+
 #include "nunuzac.h"
+#include "os.h"
 
 static os_type current_os = WIN;
 

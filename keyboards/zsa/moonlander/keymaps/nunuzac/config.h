@@ -19,7 +19,6 @@
 #pragma once
 
 #define WAIT_FOR_USB
-#define LEADER_NO_TIMEOUT
 #define LEADER_TIMEOUT 300
 #define TAPPING_TERM 175
 #define NO_AUTO_SHIFT_SPECIAL
