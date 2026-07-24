@@ -31,8 +31,8 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
         KC_TDEC, KC_TDN1, KC_TDN2, KC_TDN3, KC_TDN4,  KC_TDN5,                         KC_TDN6, KC_TDN7, KC_TDN8, KC_TDN9, KC_TDN0, KC_TDLG,
-        KC_TDUH, KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,    TG_FN,         DM_PLY1, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_TDSL,
-        KC_TDDE, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,    QK_LEAD,       DM_PLY2, KC_H,    KC_J,    KC_K,    KC_L,    KC_TDEP, KC_TDQT,
+        KC_TDUH, KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,    TG_FN,         _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_TDSL,
+        KC_TDDE, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,    QK_LEAD,       _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_TDEP, KC_TDQT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,    CW_TOGG,       _______, KC_N,    KC_M,    KC_TDCL, KC_TDDG, KC_TDCN, KC_TDLN,
         KC_LCTL, KC_LGUI, KC_LALT, KC_LEFT, KC_RIGHT, KC_SPC,  KC_TAB,        KC_ENT,  KC_BSPC, KC_UP,   KC_DOWN, KC_TDCB, KC_TDRB, KC_TDSB
     ),
@@ -87,36 +87,15 @@ void leader_end_user(void) {
     }
 }
 
-/* bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) { */
-/*     // caps lock cyan */
-/*     if (host_keyboard_led_state().caps_lock) { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(0, 0, 0, 128); */
-/*     } else { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(0, 0, 0, 0); */
-/*     } */
-/*     // num lock cyan */
-/*     if (host_keyboard_led_state().num_lock) { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(1, 0, 0, 128); */
-/*     } else { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(1, 0, 0, 0); */
-/*     } */
-/*     // scroll lock cyan */
-/*     if (host_keyboard_led_state().scroll_lock) { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(2, 0, 0, 128); */
-/*     } else { */
-/*         RGB_MATRIX_INDICATOR_SET_COLOR(2, 0, 0, 0); */
-/*     } */
-/*     // layer state */
-/*     switch (get_highest_layer(layer_state)) { */
-/*         case 1: */
-/*             RGB_MATRIX_INDICATOR_SET_COLOR(37, 0, 0, 128); */
-/*             break; */
-/*         case 2: */
-/*             RGB_MATRIX_INDICATOR_SET_COLOR(38, 0, 0, 128); */
-/*             break; */
-/*         case 3: */
-/*             RGB_MATRIX_INDICATOR_SET_COLOR(39, 0, 0, 128); */
-/*             break; */
-/*     } */
-/*     return false; */
-/* } */
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (host_keyboard_led_state().caps_lock) {
+        rgb_matrix_set_color_all(0, 0, 255);
+    } else if (is_caps_word_on()) {
+        rgb_matrix_set_color_all(0, 255, 0);
+    } else if (get_highest_layer(layer_state) == FUNCTION) {
+        rgb_matrix_set_color_all(0, 128, 128);
+    } else {
+        rgb_matrix_set_color_all(0, 0, 0);
+    }
+    return false;
+}
