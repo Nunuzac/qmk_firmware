@@ -7,4 +7,4 @@ COMMAND_ENABLE       = no
 COMBO_ENABLE         = no
 SEND_STRING_ENABLE   = yes
 CAPS_WORD_ENABLE     = yes
-MOUSEKEY_ENABLE      = no
+MOUSEKEY_ENABLE      = yes
