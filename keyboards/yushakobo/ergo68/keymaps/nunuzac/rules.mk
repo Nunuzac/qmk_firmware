@@ -1,10 +1,10 @@
 TAP_DANCE_ENABLE     = yes
 AUTO_SHIFT_ENABLE    = no
-LEADER_ENABLE        = yes
+LEADER_ENABLE        = no
 DYNAMIC_MACRO_ENABLE = no
 AUDIO_ENABLE         = no
 COMMAND_ENABLE       = no
-COMBO_ENABLE         = no
+COMBO_ENABLE         = yes
 SEND_STRING_ENABLE   = yes
 CAPS_WORD_ENABLE     = yes
 MOUSEKEY_ENABLE      = yes

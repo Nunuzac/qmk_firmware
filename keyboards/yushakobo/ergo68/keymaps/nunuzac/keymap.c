@@ -10,13 +10,43 @@ enum layers { QWERTY, FUNCTION, MOUSE };
 #define TG_FN TG(FUNCTION)
 #define TG_MK TG(MOUSE)
 
+enum combo_events {
+    CAPS_COMBO,
+    LPWD_COMBO,
+    SPWD_COMBO,
+    MAIL_COMBO,
+    WMAL_COMBO,
+    LNAM_COMBO,
+    SNAM_COMBO,
+    COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+const uint16_t PROGMEM caps_combo[] = {KC_RGHT, KC_UP, COMBO_END};
+const uint16_t PROGMEM lpwd_combo[] = {KC_P, KC_W, KC_D, COMBO_END};
+const uint16_t PROGMEM spwd_combo[] = {KC_P, KC_W, COMBO_END};
+const uint16_t PROGMEM mail_combo[] = {KC_M, KC_L, COMBO_END};
+const uint16_t PROGMEM wmal_combo[] = {KC_W, KC_M, KC_L, COMBO_END};
+const uint16_t PROGMEM lnam_combo[] = {KC_N, KC_A, KC_M, COMBO_END};
+const uint16_t PROGMEM snam_combo[] = {KC_N, KC_M, COMBO_END};
+
+combo_t key_combos[] = {
+    [CAPS_COMBO] = COMBO_ACTION(caps_combo),
+    [LPWD_COMBO] = COMBO_ACTION(lpwd_combo),
+    [SPWD_COMBO] = COMBO_ACTION(spwd_combo),
+    [MAIL_COMBO] = COMBO_ACTION(mail_combo),
+    [WMAL_COMBO] = COMBO_ACTION(wmal_combo),
+    [LNAM_COMBO] = COMBO_ACTION(lnam_combo),
+    [SNAM_COMBO] = COMBO_ACTION(snam_combo),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
         KC_TDEC, KC_TDN1, KC_TDN2, KC_TDN3, KC_TDN4,  KC_TDN5,                         KC_TDN6, KC_TDN7, KC_TDN8, KC_TDN9, KC_TDN0, KC_TDLG,
         KC_TDUH, KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,    TG_FN,         TG_MK,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_TDSL,
-        KC_TDDE, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,    QK_LEAD,       _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_TDEP, KC_TDQT,
-        OS_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,    CW_TOGG,       _______, KC_N,    KC_M,    KC_TDCL, KC_TDDG, KC_TDCN, KC_TDLN,
+        KC_TDDE, KC_A,    KC_S,    KC_D,    KC_F,     KC_G,    _______,       _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_TDEP, KC_TDQT,
+        OS_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,    _______,       _______, KC_N,    KC_M,    KC_TDCL, KC_TDDG, KC_TDCN, KC_TDLN,
         OS_LCTL, OS_LGUI, OS_LALT, KC_LEFT, KC_RIGHT, KC_SPC,  KC_TAB,        KC_ENT,  KC_BSPC, KC_UP,   KC_DOWN, KC_TDCB, KC_TDRB, KC_TDSB
     ),
     [FUNCTION] = LAYOUT(
@@ -35,6 +65,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 // clang-format on
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case CAPS_COMBO:
+            if (!pressed) {
+                if (is_caps_word_on())
+                    caps_word_off();
+                else
+                    caps_word_on();
+            }
+        break;
+        case LPWD_COMBO:
+            if (!pressed)
+                send_long_password();
+        break;
+        case SPWD_COMBO:
+            if (!pressed)
+                send_short_password();
+        break;
+        case MAIL_COMBO:
+            if (!pressed)
+                send_mail();
+        break;
+        case WMAL_COMBO:
+            if (!pressed)
+                send_work_mail();
+        break;
+        case LNAM_COMBO:
+            if (!pressed)
+                send_long_name();
+        break;
+        case SNAM_COMBO:
+            if (!pressed)
+                send_short_name();
+    }
+}
 
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
@@ -61,30 +127,6 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
         default:
             return false;
-    }
-}
-
-void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_C)) {
-        SEND_STRING("clear");
-        tap_code(KC_ENT);
-    } else if (leader_sequence_one_key(KC_E)) {
-        SEND_STRING("exit");
-        tap_code(KC_ENT);
-    } else if (leader_sequence_one_key(KC_G)) {
-        SEND_STRING(" | grep ");
-    } else if (leader_sequence_one_key(KC_N)) {
-        send_short_name();
-    } else if (leader_sequence_two_keys(KC_N, KC_M)) {
-        send_long_name();
-    } else if (leader_sequence_one_key(KC_M)) {
-        send_work_mail();
-    } else if (leader_sequence_two_keys(KC_M, KC_L)) {
-        send_mail();
-    } else if (leader_sequence_one_key(KC_P)) {
-        send_long_password();
-    } else if (leader_sequence_two_keys(KC_P, KC_W)) {
-        send_short_password();
     }
 }
 
