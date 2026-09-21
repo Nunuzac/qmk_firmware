@@ -20,11 +20,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OS_LCTL, OS_LGUI, OS_LALT, KC_LEFT, KC_RIGHT, KC_SPC,  KC_TAB,        KC_ENT,  KC_BSPC, KC_UP,   KC_DOWN, KC_TDCB, KC_TDRB, KC_TDSB
     ),
     [FUNCTION] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______, _______, _______,        _______, KC_DEL,  _______, _______, _______, _______, _______
     ),
     [MOUSE] = LAYOUT(
         _______, _______, _______, _______, _______, _______,                          _______, _______, _______, _______, _______, _______,
@@ -81,9 +81,9 @@ void leader_end_user(void) {
         send_work_mail();
     } else if (leader_sequence_two_keys(KC_M, KC_L)) {
         send_mail();
-    } else if (leader_sequence_one_key(KC_P)) {
+    } else if (leader_sequence_one_key(KC_C)) {
         send_long_password();
-    } else if (leader_sequence_two_keys(KC_P, KC_W)) {
+    } else if (leader_sequence_two_keys(KC_C, KC_N)) {
         send_short_password();
     }
 }
@@ -131,7 +131,7 @@ void keyboard_post_init_user(void) {
                     61, 62
 // clang-format on
 
-uint8_t function_leds[NUMBER_LEDS_COUNT + 1]                      = {9, NUMBER_LEDS};
+uint8_t function_leds[NUMBER_LEDS_COUNT + 3]                      = {3, 9, NUMBER_LEDS, 72};
 uint8_t caps_leds[LETTER_LEDS_COUNT + 1]                          = {3, LETTER_LEDS};
 uint8_t caps_word_leds[NUMBER_LEDS_COUNT + LETTER_LEDS_COUNT + 4] = {23, NUMBER_LEDS, LETTER_LEDS, 33, 66, 72};
 uint8_t mouse_leds[MOUSE_LEDS_COUNT + 1]                          = {46, MOUSE_LEDS};
