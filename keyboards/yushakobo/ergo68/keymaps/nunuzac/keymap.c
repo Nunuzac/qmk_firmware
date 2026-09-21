@@ -20,8 +20,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OS_LCTL, OS_LGUI, OS_LALT, KC_LEFT, KC_RIGHT, KC_SPC,  KC_TAB,        KC_ENT,  KC_BSPC, KC_UP,   KC_DOWN, KC_TDCB, KC_TDRB, KC_TDSB
     ),
     [FUNCTION] = LAYOUT(
-        KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-        _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, KC_F12,
         _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______,        _______, KC_DEL,  _______, _______, _______, _______, _______
@@ -131,7 +131,7 @@ void keyboard_post_init_user(void) {
                     61, 62
 // clang-format on
 
-uint8_t function_leds[NUMBER_LEDS_COUNT + 3]                      = {3, 9, NUMBER_LEDS, 72};
+uint8_t function_leds[NUMBER_LEDS_COUNT + 3]                      = {9, NUMBER_LEDS, 52, 72};
 uint8_t caps_leds[LETTER_LEDS_COUNT + 1]                          = {3, LETTER_LEDS};
 uint8_t caps_word_leds[NUMBER_LEDS_COUNT + LETTER_LEDS_COUNT + 4] = {23, NUMBER_LEDS, LETTER_LEDS, 33, 66, 72};
 uint8_t mouse_leds[MOUSE_LEDS_COUNT + 1]                          = {46, MOUSE_LEDS};
@@ -148,7 +148,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (get_highest_layer(layer_state) == MOUSE) {
         color_leds(50, 250, 10, mouse_leds, MOUSE_LEDS_COUNT + 1);
     } else if (get_highest_layer(layer_state) == FUNCTION) {
-        color_leds(50, 160, 240, function_leds, NUMBER_LEDS_COUNT + 1);
+        color_leds(50, 160, 240, function_leds, NUMBER_LEDS_COUNT + 3);
     } else if (host_keyboard_led_state().caps_lock) {
         color_leds(210, 150, 250, caps_leds, LETTER_LEDS_COUNT + 1);
     } else if (is_caps_word_enabled) {
