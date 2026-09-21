@@ -65,7 +65,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_C)) {
+    if (leader_sequence_one_key(KC_L)) {
         SEND_STRING("clear");
         tap_code(KC_ENT);
     } else if (leader_sequence_one_key(KC_E)) {
